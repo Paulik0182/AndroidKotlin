@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+/workspace.xml
+/gradle.xml
+/Project_Default.xml
+/build.gradle
+/gradle-wrapper.properties
+/.gitignore
