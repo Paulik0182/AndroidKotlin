@@ -53,7 +53,8 @@ public class RemarksList extends Fragment {
         for (int i = 0; i < remarks.length; i++) {
             String remark = remarks[i];
             String date = dates[i];
-            @SuppressLint("UseRequireInsteadOfGet") LinearLayoutCompat subLayoutView = new LinearLayoutCompat ( Objects.requireNonNull ( getContext () ) );
+            @SuppressLint("UseRequireInsteadOfGet") LinearLayoutCompat subLayoutView =
+                    new LinearLayoutCompat ( Objects.requireNonNull ( getContext () ) );
             subLayoutView.setOrientation ( LinearLayoutCompat.VERTICAL );
             TextView textviewName = new TextView ( getContext () );
             TextView textviewDate = new TextView ( getContext () );
@@ -64,13 +65,15 @@ public class RemarksList extends Fragment {
 
             textviewDate.setText ( date );
             textviewDate.setTextColor ( Color.GRAY );
-            textviewDate.setLayoutParams ( new LinearLayout.LayoutParams ( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ) );
+            textviewDate.setLayoutParams ( new LinearLayout.LayoutParams ( ViewGroup.LayoutParams.
+                    MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ) );
             textviewDate.setBackgroundColor ( remarkColor );
 
             textviewName.setText ( remark );
             textviewName.setTextSize ( 25 );
             textviewName.setTextColor ( Color.BLACK );
-            textviewName.setLayoutParams ( new LinearLayout.LayoutParams ( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ) );
+            textviewName.setLayoutParams ( new LinearLayout.LayoutParams ( ViewGroup.LayoutParams.
+                    MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ) );
             textviewName.setBackgroundColor ( remarkColor );
 
             // добавление view в layouts
@@ -88,10 +91,12 @@ public class RemarksList extends Fragment {
                     int id = item.getItemId ();
                     switch (id) {
                         case R.id.favorite_popup:
-                            Toast.makeText ( getContext (), "В Избранное", Toast.LENGTH_SHORT ).show ();
+                            Toast.makeText ( getContext (), "В Избранное", Toast.LENGTH_SHORT )
+                                    .show ();
                             return true;
                         case R.id.delete_popup:
-                            Toast.makeText ( getContext (), "Удалить", Toast.LENGTH_SHORT ).show ();
+                            Toast.makeText ( getContext (), "Удалить", Toast.LENGTH_SHORT )
+                                    .show ();
                             return true;
                     }
                     return true;
@@ -103,7 +108,9 @@ public class RemarksList extends Fragment {
             // обработка нажатия на заметку
             final int index = i;
             subLayoutView.setOnClickListener ( v -> {
-                currentRemark = new Remark ( getResources ().getStringArray ( R.array.remarks )[index], getResources ().getStringArray ( R.array.descriptions )[index], getResources ().getStringArray ( R.array.dates )[index] );
+                currentRemark = new Remark ( getResources ().getStringArray ( R.array.remarks )[index],
+                        getResources ().getStringArray ( R.array.descriptions )[index],
+                        getResources ().getStringArray ( R.array.dates )[index] );
                 showRemark ( currentRemark );
             } );
         }
@@ -120,7 +127,7 @@ public class RemarksList extends Fragment {
 
     private void showRemarkPortrait(Remark remark) {
         // создаём новый фрагмент
-        RemarksDetailedFragment notesDetailed = RemarksDetailedFragment.newInstance ( remark );
+        String notesDetailed = RemarksDetailedFragmentKotlin.Companion.getARG_REMARK ();
         // выполняем транзакцию по замене фрагмента
         FragmentManager fragmentManager = requireActivity ().getSupportFragmentManager ();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction ();
@@ -131,15 +138,15 @@ public class RemarksList extends Fragment {
 
         // переходим на RemarkssDetailedActivity, т.к. к ней привязан фрагмент с деталями заметки
         Intent intent = new Intent ();
-        intent.setClass ( getActivity (), RemarksDetailedActivity.class );
+        intent.setClass ( getActivity (), RemarksDetailedActivityKotlin.class );
         // передаем с интентом экземпляр заметки, по которой было нажатие
-        intent.putExtra ( RemarksDetailedFragment.ARG_REMARK, remark );
+        intent.putExtra ( RemarksDetailedFragmentKotlin.Companion.getARG_REMARK (), remark );
 //        startActivity(intent);
     }
 
     private void showRemarkLandscape(Remark remark) {
         // создаём новый фрагмент с текущей позицией
-        RemarksDetailedFragment remarksDetailed = RemarksDetailedFragment.newInstance ( remark );
+        RemarksDetailedFragmentKotlin remarksDetailed = RemarksDetailedFragmentKotlin.newInstance ( remark );
         // выполняем транзакцию по замене фрагмента
         FragmentManager fragmentManager = requireActivity ().getSupportFragmentManager ();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction ();
