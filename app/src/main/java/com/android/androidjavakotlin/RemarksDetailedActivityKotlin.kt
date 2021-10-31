@@ -4,7 +4,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
-open class RemarksDetailedActivityKotlin : AppCompatActivity() {
+class RemarksDetailedActivityKotlin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_remarks_detailed)

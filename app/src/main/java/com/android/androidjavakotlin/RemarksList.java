@@ -34,8 +34,6 @@ public class RemarksList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_remarks_list, container, false);
-//        return view;
         return inflater.inflate ( R.layout.fragment_remarks_list, container, false );
     }
 
@@ -158,14 +156,17 @@ public class RemarksList extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated ( savedInstanceState );
-        isLandscape = getResources ().getConfiguration ().orientation == Configuration.ORIENTATION_LANDSCAPE;
+        isLandscape = getResources ().getConfiguration ().orientation == Configuration.
+                ORIENTATION_LANDSCAPE;
 
         //  показываем сохраненную заметку
         if (savedInstanceState != null) {
             currentRemark = savedInstanceState.getParcelable ( CURRENT_REMARK );
         } else {
             // если не появлась заметка - показываем самую первую
-            currentRemark = new Remark ( getResources ().getStringArray ( R.array.remarks )[0], getResources ().getStringArray ( R.array.descriptions )[0], getResources ().getStringArray ( R.array.dates )[0] );
+            currentRemark = new Remark ( getResources ().getStringArray ( R.array.remarks )[0],
+                    getResources ().getStringArray ( R.array.descriptions )[0], getResources ()
+                    .getStringArray ( R.array.dates )[0] );
         }
         if (isLandscape) {
             showRemarkLandscape ( currentRemark );
